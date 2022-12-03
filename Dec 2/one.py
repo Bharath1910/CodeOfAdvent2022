@@ -1,13 +1,3 @@
-# Player1
-# A : Rock
-# B : Paper
-# C : Scissors
-
-# Player2
-# X : Rock
-# Y : Paper
-# Z : Scissors
-
 testCases = """B Z
 B X
 C Y
@@ -2509,12 +2499,72 @@ B Y
 C Y
 B Y
 """
+# Player1
+# A : Rock
+# B : Paper
+# C : Scissors
+
+# Player2
+# X : Rock
+# Y : Paper
+# Z : Scissors
+
+rock = "A"
+paper = "B"
+scissors = "C"
+
+myRock = "X"
+myPaper = "Y"
+myScissors = "Z"
+
+
+def addPoints(choice):
+    if choice == "X":
+        return 1
+    
+    elif choice == "Y":
+        return 2
+    
+    elif choice == "Z":
+        return 3
+
 score = 0
 
 seperatedTestCases = testCases.split("\n")
 
 for i in seperatedTestCases:
     gameResult = i.split(" ")
-    if gameResult[0] == "A" and gameResult[1] == "X" or gameResult[0] == "B" and gameResult[1] == "Y" or gameResult[0] == "C" and gameResult[1] == "Z":
-        score += 3
     
+    # Checking for draw
+    if (gameResult[0] == rock and gameResult[1] == myRock) or (gameResult[0] == paper and gameResult[1] == myPaper) or (gameResult[0] == scissors and gameResult[1] == myScissors):
+        score += 3
+        score += addPoints(gameResult[1])
+    
+
+    # Checking of all possibilities with rock
+    elif (gameResult[0] == rock and gameResult[1] == myPaper):
+        score += 6
+        score += addPoints(gameResult[1])
+    
+    elif (gameResult[0] == rock and gameResult[1] == myScissors):
+        score += addPoints(gameResult[1])
+
+
+    # Checking of all possibilities with paper
+    elif (gameResult[0] == paper and gameResult[1] == myRock):
+        score += addPoints(gameResult[1])
+
+    elif (gameResult[0] == paper and gameResult[1] == myScissors):
+        score += 6
+        score += addPoints(gameResult[1])
+    
+
+    # Checking all possibilities with scissors
+    elif (gameResult[0] == scissors and gameResult[1] == myRock):
+        score += 6
+        score += addPoints(gameResult[1])
+    
+    elif (gameResult[0] == scissors and gameResult[1] == myPaper):
+        score += addPoints(gameResult[1])
+    
+print(score)
