@@ -15,5 +15,3 @@ with open("Dec 4/input.txt") as f:
             score += 1
 
 print(score)
-     
-        
