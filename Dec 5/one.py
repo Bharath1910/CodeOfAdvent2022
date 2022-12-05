@@ -17,8 +17,6 @@ with open("Dec 5/input.txt", 'r') as f:
         
         _, numberOfCrates, _, fromStackPosition, _, toStackPosition = i.split()
         numberOfCrates, fromStackPosition, toStackPosition = int(numberOfCrates), int(fromStackPosition), int(toStackPosition)
-        print(numberOfCrates, fromStackPosition, toStackPosition)
-
 
         for j in range(numberOfCrates):
             popedCrate = stacks[fromStackPosition - 1].pop()
